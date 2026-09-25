@@ -67,31 +67,44 @@ client/
 
 ## Setup Instructions
 
+### Clone the repo
+
+bash
+git clone <repo-url>
+cd PersonalTaskManager
+
 1. **Install dependencies**
 
-   ```bash
+   bash
    cd client
-   npm create vite@latest
-   ```
+   npm install
 
 2. **Install React Router, icons and tailwindCss** (if not already present)
 
-   ```bash
+   bash
    cd client
    npm install tailwindcss @tailwindcss/vite
    npm install react-router-dom
    npm install react-icons
-   ```
 
 3. **Run the dev server**
 
-   ```bash
+   bash
    cd client
    npm run dev
-   ```
+
+   The app will be available at the local URL Vite prints in the terminal (typically `http://localhost:5173`).
 
    NB: you have to "cd client" always due to the server folder
-   The app will be available at the local URL Vite prints in the terminal (typically `http://localhost:5173`).
+
+4. **Build for production**
+
+   bash
+   npm run build
+
+5. **Preview the production build**
+   bash
+   npm run preview
 
 No backend or environment variables are required — tasks are stored in the browser's `localStorage` under the key `taskduty.tasks`.
 
