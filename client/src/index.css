@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+#root {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-family: "Signika Negative", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #974FD0;
+  border-radius: 30px;
+}
