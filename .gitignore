@@ -3,11 +3,6 @@ node_modules/
 client/node_modules/
 
 
-# Environment files - NEVER commit these
-.env
-client/.env
-server/.env
-
 # Build outputs
 dist/
 client/dist/
