@@ -1,9 +1,14 @@
-> This Project is still in TESTING MODE.. This is why;
+> This Project is still in TESTING MODE
 
 ## Client has its own readme file &&
+
 ## Server has its own readme file
 
-> they are not yet integrated together.
+```diff
+- they are not yet integrated/connected together.
+```
+
 > Kindly open Each Folder and check for its `README.MD` file for SETUP Instructions
 
 > Thanks
+
