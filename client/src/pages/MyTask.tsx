@@ -88,7 +88,7 @@ const MyTask: React.FC = () => {
       ) : filteredTasks.length === 0 ? (
         <div className="rounded-lg border border-dashed border-[#E3E0ED] bg-white px-6 py-16 text-center">
           <p className="font-serif text-lg font-medium text-[#171332]">
-            Nothing here yet
+            Sorry! Nothing here yet
           </p>
           <p className="mt-1.5 text-sm text-[#8B87A3]">
             Try a different filter, or add a task to get started.
@@ -107,14 +107,6 @@ const MyTask: React.FC = () => {
         </div>
       )}
 
-      <div className="mt-10 text-center">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-sm font-medium text-[#6C4CE0] hover:underline"
-        >
-          Back To Top
-        </button>
-      </div>
     </section>
   );
 };

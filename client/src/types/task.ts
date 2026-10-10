@@ -10,6 +10,14 @@ export interface Task {
   createdAt: string;
 }
 
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  token: string;
+}
+
+
 export type NewTaskInput = Omit<Task, "id" | "createdAt">;
 
 export const Categories: TaskCategory[] = ["Work", "Personal", "Urgent"];

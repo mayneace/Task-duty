@@ -15,7 +15,7 @@ router.use(protect);
 
 router.post("/create", createTask);
 router.get("/", getTasks);
-router.get("/each/:id", getTaskById);
+router.get("/all/:id", getTaskById);
 router.put("/edit/:id", updateTask);
 router.delete("/delete/:id", deleteTask);
 

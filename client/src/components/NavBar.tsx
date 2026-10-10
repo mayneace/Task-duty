@@ -1,23 +1,32 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import displaypicture from "../assets/Group 6.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const NavBar: React.FC = () => {
   const location = useLocation();
+
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   const allLinks = () => {
     return location.pathname === "/" ? (
       <>
         <Link
           to="/newTask"
-          className="text-[#292929] font-medium text-md lg:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
+          className="text-[#292929] font-medium text-sm sm:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
         >
           New Tasks
         </Link>
         <Link
           to="./myTask"
-          className="text-[#292929] font-medium text-md lg:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
+          className="text-[#292929] font-medium text-sm sm:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
         >
           All Tasks
         </Link>
@@ -25,21 +34,21 @@ const NavBar: React.FC = () => {
     ) : location.pathname === "/myTask" ? (
       <Link
         to="/newTask"
-        className="text-[#292929] font-medium text-md lg:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
+        className="text-[#292929] font-medium text-sm sm:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
       >
         New Tasks
       </Link>
     ) : location.pathname === "/newTask" ? (
       <Link
         to="/myTask"
-        className="text-[#292929] font-medium text-md lg:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
+        className="text-[#292929] font-medium text-sm sm:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
       >
         All Tasks
       </Link>
     ) : location.pathname.startsWith("/editTask") ? (
       <Link
         to="/myTask"
-        className="text-[#292929] font-medium text-md lg:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
+        className="text-[#292929] font-medium text-sm sm:text-xl transform transition-all duration-300 hover:scale-105 active:translate-y-2"
       >
         All Tasks
       </Link>
@@ -53,14 +62,39 @@ const NavBar: React.FC = () => {
           <div className="flex items-center gap-5 py-4">
             <img src={logo} alt="" className="w-8" />
 
-            <p className="font-semibold md:text-2xl no-underline text-[#2D0050] transform transition-all duration-300 hover:scale-103 active:translate-y-1">
+            <p className="font-semibold md:text-2xl no-underline text-[#2D0050] transform transition-all duration-300 hover:scale-103">
               TaskDuty
             </p>
           </div>
         </Link>
 
-        <div className="flex items-center gap-10">
-          {allLinks()}
+        <div className="flex items-center gap-3 sm:gap-10">
+          {user && allLinks()}
+
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="cursor-pointer text-sm sm:text-xl font-medium text-[#292929] transition-all duration-300 hover:scale-103"
+            >
+              Log out
+            </button>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-sm sm:text-xl font-medium text-[#292929] transition-all duration-300 hover:scale-103"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/register"
+                className="text-sm sm:text-xl font-medium text-[#292929] transition-all duration-300 hover:scale-103"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
+
           <img src={displaypicture} alt="" className="w-12" />
         </div>
       </div>

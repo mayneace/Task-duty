@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import tsk from "../assets/Property 1=Frame 1.png";
+import { useAuth } from "../context/AuthContext";
 
 const cover: React.FC = () => {
+  const { user } = useAuth();
   return (
     <section className="flex my-10 px-6 sm:px-[clamp(1rem,11.40vw,200px)]">
       <div className="flex flex-col-reverse lg:flex-row items-center w-full gap-10">
@@ -22,11 +24,39 @@ const cover: React.FC = () => {
             <br />— keeping your daily activities in order.
           </p>
 
-          <Link to="./myTask">
-            <button className="flex items-center justify-center py-2.5 px-7 rounded-xl bg-linear-to-b from-[#dbb5fa] via-[#974FD0] to-[#d7a7fe] text-white cursor-pointer border-b-4 border-white/70 transition-all duration-300 transform hover:scale-105 active:scale-100 shadow-[0_10px_25px_rgba(0,0,0,0.13)] backdrop-blur-xs">
-              Go to My Tasks
-            </button>
-          </Link>
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            {user ? (
+              <>
+                <Link
+                  to="/myTask"
+                  className="rounded-lg bg-[#6C4CE0] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#5C3ED6]"
+                >
+                  Go to My Tasks
+                </Link>
+                <Link
+                  to="/newTask"
+                  className="rounded-lg border border-[#E3E0ED] bg-white px-6 py-3.5 text-sm font-semibold text-[#171332] transition-colors hover:border-[#C9C4DE]"
+                >
+                  Add a task
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/register"
+                  className="rounded-lg bg-[#6C4CE0] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#5C3ED6]"
+                >
+                  Get started
+                </Link>
+                <Link
+                  to="/login"
+                  className="rounded-lg border border-[#E3E0ED] bg-white px-6 py-3.5 text-sm font-semibold text-[#171332] transition-colors hover:border-[#C9C4DE]"
+                >
+                  Log in
+                </Link>
+              </>
+            )}
+          </div>
         </div>
 
         <img src={tsk} alt="" className="w-full lg:w-150" />

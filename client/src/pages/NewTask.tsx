@@ -10,9 +10,9 @@ const NewTask: React.FC = () => {
   const navigate = useNavigate();
   const { addTask } = useTasks();
 
-  const handleSubmit = (input: NewTaskInput) => {
-    addTask(input);
-  };
+ const handleSubmit = async (input: NewTaskInput) => {
+  await addTask(input);
+};
 
   return (
     <section className="flex flex-col gap-4 px-6 py-14 sm:px-[clamp(1rem,11.40vw,200px)]">

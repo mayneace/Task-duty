@@ -6,7 +6,7 @@ import { Categories } from "../types/task";
 interface TaskFormProps {
   mode: "new" | "edit";
   initialTask?: Task;
-  onSubmit: (input: NewTaskInput) => void;
+  onSubmit: (input: NewTaskInput) => Promise<void>;
 }
 
 interface FormErrors {
@@ -50,12 +50,18 @@ const TaskForm: React.FC<TaskFormProps> = ({ mode, initialTask, onSubmit }) => {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const [serverError, setServerError] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!validate() || !category) return;
 
-    onSubmit({ title, description, dueDate, category, completed });
-    navigate("/myTask");
+    try {
+      await onSubmit({ title, description, dueDate, category, completed });
+      navigate("/myTask");
+    } catch (err: any) {
+      setServerError(err.response?.data?.message ?? "Something went wrong");
+    }
   };
 
   return (
@@ -187,6 +193,8 @@ const TaskForm: React.FC<TaskFormProps> = ({ mode, initialTask, onSubmit }) => {
           Mark as completed
         </label>
       )}
+
+      {serverError && <p className="text-sm text-[#E0654C]">{serverError}</p>}
 
       <button
         type="submit"

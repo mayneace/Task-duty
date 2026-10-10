@@ -17,8 +17,8 @@ const Edit: React.FC = () => {
     return <Navigate to="/myTask" replace />;
   }
 
-  const handleSubmit = (input: NewTaskInput) => {
-    if (id) updateTask(id, input);
+  const handleSubmit = async (input: NewTaskInput) => {
+    if (id) await updateTask(id, input);
   };
 
   return (
