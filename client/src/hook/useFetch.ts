@@ -8,17 +8,29 @@ const normalize = (t: any): Task => ({
   dueDate: String(t.dueDate).split("T")[0],
 });
 
-export function useTasks() {
+export function useTasks(search = "") {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    let ignore = false; // guard
+
     api
-      .get("/tasks")
-      .then((res) => setTasks(res.data.tasks.map(normalize)))
-      .catch(() => setTasks([]))
-      .finally(() => setIsLoading(false));
-  }, []);
+      .get("/tasks", { params: search ? { search } : {} }) // real list path
+      .then((res) => {
+        if (!ignore) setTasks(res.data.tasks.map(normalize));
+      })
+      .catch(() => {
+        if (!ignore) setTasks([]);
+      })
+      .finally(() => {
+        if (!ignore) setIsLoading(false);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [search]); // refetch
 
   const getTask = useCallback(
     (id: string) => tasks.find((t) => t.id === id),

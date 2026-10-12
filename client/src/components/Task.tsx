@@ -28,7 +28,7 @@ const Task: React.FC<TaskProps> = ({ task, onToggleComplete, onDelete }) => {
 
   return (
     <div
-      className={`flex justify-between gap-6 border-b-2 border-white bg-linear-to-b from-gray-300/10 via-gray-400/10 to-gray-300/10 backdrop-blur-xs sm:backdrop-blur-sm transition-all duration-300 transform group rounded-xl px-5 shadow-[0_6px_25px_rgba(0,0,0,0.10)] py-5 ${task.completed ? "opacity-60" : ""}`}
+      className={`flex justify-between gap-6 border-b-2 border-white bg-linear-to-b from-gray-300/10 via-gray-400/10 to-gray-300/10 backdrop-blur-xs sm:backdrop-blur-sm transition-all duration-100 transform group rounded-xl px-5 shadow-[0_6px_25px_rgba(0,0,0,0.10)] py-5 ${task.completed ? "opacity-60" : ""}`}
     >
       {/* Date */}
       <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl border-2 border-[#E3E0ED] bg-[#FAF9FC]">
@@ -52,7 +52,7 @@ const Task: React.FC<TaskProps> = ({ task, onToggleComplete, onDelete }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 opacity-50 duration-300 transition-opacity group-hover:opacity-100">
+          <div className="flex items-center gap-2 opacity-50 duration-100 transition-opacity group-hover:opacity-100">
             <button
               onClick={() => navigate(`/editTask/${task.id}`)}
               className="rounded-md border border-[#E3E0ED] px-3 py-1 text-xs font-medium text-[#171332] hover:bg-[#FAF9FC]"
@@ -73,7 +73,7 @@ const Task: React.FC<TaskProps> = ({ task, onToggleComplete, onDelete }) => {
           className="flex items-start gap-3 text-left"
         >
           <span
-            className={`mt-1 flex h-4 w-4 shrink-0 items-center transform transition-all duration-300 justify-center rounded-full border ${
+            className={`mt-1 flex h-4 w-4 shrink-0 items-center transform transition-all duration-100 justify-center rounded-full border ${
               task.completed
                 ? "border-[#000000] bg-[#fcfcfc]"
                 : "border-[#C9C4DE]"
@@ -92,7 +92,7 @@ const Task: React.FC<TaskProps> = ({ task, onToggleComplete, onDelete }) => {
 
         {/* <hr className="border-x border-gray-300 w-full" /> */}
 
-        <div className="text-center px-5 py-5 flex flex-col gap-5">
+        <div className="text-start py-5 flex flex-col gap-5">
           <p className="pl-7 text-sm leading-relaxed text-[#6B6785]">
             {task.description}
           </p>

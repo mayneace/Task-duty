@@ -13,6 +13,11 @@ interface TaskBody {
   completed?: boolean;
 }
 
+// to avoid misbehaviour or crashing the server with special characters
+function escapeRegex(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function isPastDate(dueDate: string | Date): boolean {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -30,9 +35,10 @@ function isValidCategory(category: unknown): category is TaskCategory {
 const getTasks = asyncHandler(async (req: AuthRequest, res: Response) => {
   const filter: QueryFilter<ITask> = { user: req.user!._id };
 
-  const { category, completed } = req.query as {
+  const { category, completed, search } = req.query as {
     category?: string;
     completed?: string;
+    search?: string;
   };
 
   if (typeof category === "string") {
@@ -40,6 +46,10 @@ const getTasks = asyncHandler(async (req: AuthRequest, res: Response) => {
   }
   if (typeof completed === "string") {
     filter.completed = completed === "true";
+  }
+  if (typeof search === "string" && search.trim()) {
+    const pattern = new RegExp(escapeRegex(search.trim().slice(0.1)), "i");
+    filter.$or = [{ title: pattern }, { description: pattern }];
   }
 
   const tasks = await Task.find(filter).sort({ createdAt: -1 });

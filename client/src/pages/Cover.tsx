@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 const cover: React.FC = () => {
   const { user } = useAuth();
   return (
-    <section className="flex my-10 px-6 sm:px-[clamp(1rem,11.40vw,200px)]">
+    <section className="flex my-20 sm:my-10 px-6 sm:px-[clamp(1rem,11.40vw,200px)]">
       <div className="flex flex-col-reverse lg:flex-row items-center w-full gap-10">
         <div className="flex flex-col w-full lg:w-1/2 items-start gap-6 text-left px-4">
           <span className="rounded-full border-b-2 border-white bg-linear-to-b from-gray-300/50 via-gray-400/10 to-gray-300/30 backdrop-blur-xs sm:backdrop-blur-sm tracking-wide px-4 py-1.5 text-xs font-medium text-[#6B6785]/80 shadow-[0_6px_25px_rgba(0,0,0,0.10)] ">
@@ -29,13 +29,13 @@ const cover: React.FC = () => {
               <>
                 <Link
                   to="/myTask"
-                  className="rounded-lg bg-[#6C4CE0] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#5C3ED6]"
+                  className="rounded-full bg-[#974FD0] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#974FD0]/50 active:bg-[#974FD0]"
                 >
                   Go to My Tasks
                 </Link>
                 <Link
                   to="/newTask"
-                  className="rounded-lg border border-[#E3E0ED] bg-white px-6 py-3.5 text-sm font-semibold text-[#171332] transition-colors hover:border-[#C9C4DE]"
+                  className="rounded-full border border-[#E3E0ED] bg-white px-6 py-3.5 text-sm font-semibold text-[#974FD0] transition-colors hover:border-[#974FD0]"
                 >
                   Add a task
                 </Link>
@@ -44,13 +44,13 @@ const cover: React.FC = () => {
               <>
                 <Link
                   to="/register"
-                  className="rounded-lg bg-[#6C4CE0] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#5C3ED6]"
+                  className="rounded-full bg-[#974FD0] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#974FD0]/70"
                 >
                   Get started
                 </Link>
                 <Link
                   to="/login"
-                  className="rounded-lg border border-[#E3E0ED] bg-white px-6 py-3.5 text-sm font-semibold text-[#171332] transition-colors hover:border-[#C9C4DE]"
+                  className="rounded-full border-2 border-[#E3E0ED] bg-white px-7 py-3 text-sm font-semibold text-[#171332] transition-colors hover:border-[#974FD0]"
                 >
                   Log in
                 </Link>

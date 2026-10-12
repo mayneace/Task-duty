@@ -18,17 +18,18 @@ const Login: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col gap-10 mt-10 mx-auto max-w-md px-6 py-14">
-      <h1 className="mb-6 font-serif text-3xl font-medium text-[#171332]/30">
+    <section className="flex flex-col gap-10 mt-10 mx-auto max-w-md sm:max-w-2xl px-6 py-14">
+      <h1 className="sm:mb-6 font-serif text-3xl font-medium text-[#974FD0]/30">
         Log in to TaskDuty
       </h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          className="rounded-lg border border-[#E3E0ED] bg-white px-4 py-3"
+          required
+          className="rounded-xl placeholder:text-[#974FD0] border border-[#E3E0ED] bg-white px-4 py-3"
         />
         <div className="relative">
           <input
@@ -37,23 +38,23 @@ const Login: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
-            className="w-full rounded-lg border border-[#E3E0ED] bg-white px-4 py-3 pr-16"
+            className="w-full rounded-xl placeholder:text-[#974FD0] border border-[#E3E0ED] bg-white px-4 py-3 pr-16"
           />
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-sm font-medium text-[#6C4CE0] hover:underline"
+            className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-sm font-medium text-[#974FD0] hover:underline"
           >
             {showPassword ? <FaEye /> : <FaEyeSlash />}
           </button>
         </div>
         <button
           type="submit"
-          className="rounded-lg bg-[#6C4CE0] py-3 font-semibold text-white"
+          className="rounded-full bg-[#974FD0] py-3 font-semibold text-white"
         >
           Done
         </button>
-        <Link to="/register" className="text-center text-sm text-[#6C4CE0]">
+        <Link to="/register" className="text-center text-sm text-[#974FD0]">
           Need an account? Register
         </Link>
       </form>
