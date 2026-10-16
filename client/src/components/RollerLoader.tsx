@@ -3,7 +3,7 @@ import React from "react";
 const RollerLoader: React.FC = () => {
   return (
     // Full-screen centered container
-    <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA]">
+    <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA]/50">
       <div className="flex flex-col items-center gap-6">
         {/* Spining ring - pure CSS animation */}
         <div className="relative w-16 h-16">
