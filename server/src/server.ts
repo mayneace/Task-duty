@@ -21,7 +21,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL, // your Vercel URL, set later
+    origin: true,
     credentials: true,
   }),
 );
@@ -51,14 +51,14 @@ app.use("/api/tasks", taskRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT;
+const PORT = Number(process.env.PORT);
 
 const startServer = async (): Promise<void> => {
   try {
     await connectDB();
 
     app.listen(PORT, () => {
-      console.log(`🚀Server is running on port ${PORT}`);
+      console.log(`🚀Server is running on port: ${PORT}`);
       console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
       console.log(
         `🔗 Health check:https://task-duty-bzve.onrender.com:${PORT}/`,
@@ -69,6 +69,11 @@ const startServer = async (): Promise<void> => {
     process.exit(1);
   }
 };
+
+process.on("unhandledRejection", (reason: Error) => {
+  console.error("Unhandled Promise Rejection:", reason.message);
+  process.exit(1);
+});
 
 startServer();
 
