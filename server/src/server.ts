@@ -5,6 +5,7 @@ import cors from "cors";
 
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
+import adminRoutes from "./routes/adminRoutes";
 import taskRoutes from "./routes/taskRoutes";
 import { notFound, errorHandler } from "./middleware/errorHandler";
 
@@ -43,6 +44,7 @@ app.get("/", (_req: Request, res: Response) => {
   });
 });
 
+app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 

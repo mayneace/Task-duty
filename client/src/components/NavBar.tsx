@@ -24,15 +24,23 @@ const NavBar: React.FC = () => {
   // Which page links to show for users
   const getLinks = () => {
     const p = location.pathname;
+    let pageLinks: { to: string; label: string }[] = [];
+
     if (p === "/")
-      return [
+      pageLinks = [
         { to: "/newTask", label: "New Tasks" },
         { to: "/myTask", label: "All Tasks" },
       ];
-    if (p === "/myTask") return [{ to: "/newTask", label: "New Tasks" }];
-    if (p === "/newTask" || p.startsWith("/editTask"))
-      return [{ to: "/myTask", label: "All Tasks" }];
-    return [];
+    else if (p === "/myTask")
+      pageLinks = [{ to: "/newTask", label: "New Tasks" }];
+    else if (p === "/newTask" || p.startsWith("/editTask"))
+      pageLinks = [{ to: "/myTask", label: "All Tasks" }];
+
+    // Admins get an extra link on every page except the admin page itself
+    if (user?.role === "admin" && !p.startsWith("/admin")) {
+      pageLinks.push({ to: "/admin", label: "Admin" });
+    }
+    return pageLinks;
   };
   const links = user ? getLinks() : [];
 

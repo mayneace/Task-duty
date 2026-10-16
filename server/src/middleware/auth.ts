@@ -54,4 +54,14 @@ const protect = asyncHandler(
   },
 );
 
-export { protect };
+const authorize =
+  (...roles: Array<IUser["role"]>) =>
+  (req: AuthRequest, res: Response, next: NextFunction): void => {
+    if (!req.user || !roles.includes(req.user.role)) {
+      res.status(403);
+      throw new Error("Forbidden: you don't have permission to do this");
+    }
+    next();
+  };
+
+export { protect, authorize };

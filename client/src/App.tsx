@@ -16,6 +16,12 @@ import RollerLoader from "./components/RollerLoader";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import AdminRoute from "./components/AdminRoute";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminTasks from "./pages/admin/AdminTasks";
+
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function App() {
@@ -57,6 +63,14 @@ function App() {
                   </Route>
 
                   <Route path="*" element={<NotFoundPage />} />
+                </Route>
+
+                <Route element={<AdminRoute />}>
+                  <Route path="/admin" element={<AdminLayout />}>
+                    <Route index element={<AdminDashboard />} />
+                    <Route path="users" element={<AdminUsers />} />
+                    <Route path="tasks" element={<AdminTasks />} />
+                  </Route>
                 </Route>
               </Routes>
             </Suspense>

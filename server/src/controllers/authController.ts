@@ -9,11 +9,13 @@ interface RegisterBody {
   name: string;
   email: string;
   password: string;
+  role: string;
 }
 
 interface LoginBody {
   email: string;
   password: string;
+  role: string;
 }
 
 const registerUser = asyncHandler(
@@ -40,6 +42,7 @@ const registerUser = asyncHandler(
       _id: user._id,
       name: user.name,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id as Types.ObjectId),
     });
   },
@@ -68,6 +71,7 @@ const loginUser = asyncHandler(
       _id: user._id,
       name: user.name,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id as Types.ObjectId),
     });
   },
@@ -79,6 +83,7 @@ const getMe = asyncHandler(async (req: AuthRequest, res: Response) => {
     _id: user._id,
     name: user.name,
     email: user.email,
+    role: user.role,
   });
 });
 

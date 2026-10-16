@@ -1,5 +1,16 @@
 export type TaskCategory = "Work" | "Personal" | "Urgent";
 
+export interface AdminTask {
+  _id: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  category: "Work" | "Personal" | "Urgent";
+  completed: boolean;
+  // null if the owner's account was deleted
+  user: { _id: string; name: string; email: string } | null;
+}
+
 export interface Task {
   id: string;
   title: string;
@@ -10,13 +21,21 @@ export interface Task {
   createdAt: string;
 }
 
+export interface AdminUser {
+  _id: string;
+  name: string;
+  email: string;
+  role: "user" | "admin";
+  createdAt: string;
+}
+
 export interface User {
   _id: string;
   name: string;
   email: string;
+  role: "user" | "admin";
   token: string;
 }
-
 
 export type NewTaskInput = Omit<Task, "id" | "createdAt">;
 
